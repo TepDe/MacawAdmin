@@ -1,0 +1,29 @@
+<nav class="side-nav">
+  <ul>
+    <li *ngFor="let item of menuItems">
+      <a
+        *ngIf="!item.children"
+        [routerLink]="item.route"
+        routerLinkActive="active"
+      >
+        {{ item.label }}
+      </a>
+
+      <a
+        *ngIf="item.children"
+        href="#"
+        (click)="toggleSubMenu(item); $event.preventDefault()"
+      >
+        {{ item.label }}
+        <span class="arrow-icon" [@arrowRotate]="item.expanded ? 'expanded' : 'collapsed'">▼</span>
+      </a>
+
+      <ul *ngIf="item.children" [@submenu]="item.expanded ? 'expanded' : 'collapsed'" class="sub-menu">
+        <li *ngFor="let child of item.children">
+          <a [routerLink]="child.route" routerLinkActive="active">{{ child.label }}</a>
+        </li>
+      </ul>
+    </li>
+
+  </ul>
+</nav>

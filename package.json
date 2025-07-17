@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port 2102",
     "build": "ng build",
+    "hosting": "ng serve --port 2102 --host 192.168.100.28",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -20,12 +21,20 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^20.1.0",
+    "@angular/cdk": "^20.1.0",
     "@angular/common": "^20.1.0",
     "@angular/compiler": "^20.1.0",
     "@angular/core": "^20.1.0",
     "@angular/forms": "^20.1.0",
     "@angular/platform-browser": "^20.1.0",
     "@angular/router": "^20.1.0",
+    "@coreui/angular": "~5.5.5",
+    "@coreui/coreui": "~5.4.1",
+    "@coreui/icons-angular": "~5.5.4",
+    "@popperjs/core": "~2.11.8",
+    "bootstrap": "^5.3.7",
+    "jquery": "^3.7.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

@@ -1,0 +1,16 @@
+.app-container {
+  display: flex;
+  height: 100vh; /* full viewport height */
+}
+
+/* Optional: style the side nav */
+app-side-nav {
+  width: 250px;       /* fixed sidebar width */
+ }
+
+/* Make router-outlet take remaining space */
+router-outlet {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+}
