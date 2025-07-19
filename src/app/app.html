@@ -1,8 +1,10 @@
 <app-topbar></app-topbar>
 
-<div class="app-container">
-
-  <app-side-nav></app-side-nav>
-
-  <router-outlet></router-outlet>
-</div>
+<mat-sidenav-container fullscreen>
+  <mat-sidenav mode="side" opened>
+    <!-- menu -->
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
