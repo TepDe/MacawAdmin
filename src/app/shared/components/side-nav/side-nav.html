@@ -1,29 +1,40 @@
-<nav class="side-nav">
-  <ul>
-    <li *ngFor="let item of menuItems">
-      <a
-        *ngIf="!item.children"
-        [routerLink]="item.route"
-        routerLinkActive="active"
-      >
-        {{ item.label }}
-      </a>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer
+               class="custom-sidenav"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="!(isHandset$ | async)"
+               role="navigation">
+    <mat-nav-list>
+      <ng-container *ngFor="let nav of menuItems">
+        <a mat-list-item
+           *ngIf="!nav.children"
+           [routerLink]="nav.route"
+           routerLinkActive="active-link">
+          <span mat-line>{{ nav.label }}</span>
+        </a>
 
-      <a
-        *ngIf="item.children"
-        href="#"
-        (click)="toggleSubMenu(item); $event.preventDefault()"
-      >
-        {{ item.label }}
-        <span class="arrow-icon" [@arrowRotate]="item.expanded ? 'expanded' : 'collapsed'">▼</span>
-      </a>
+        <div *ngIf="nav.children">
+          <a mat-list-item (click)="toggleSubMenu(nav)">
+            <span mat-line>{{ nav.label }}</span>
+            <mat-icon class="expand-icon" [@arrowRotate]="nav.expanded ? 'expanded' : 'collapsed'">
+              expand_more
+            </mat-icon>
+          </a>
 
-      <ul *ngIf="item.children" [@submenu]="item.expanded ? 'expanded' : 'collapsed'" class="sub-menu">
-        <li *ngFor="let child of item.children">
-          <a [routerLink]="child.route" routerLinkActive="active">{{ child.label }}</a>
-        </li>
-      </ul>
-    </li>
+          <div class="submenu"
+               [@submenu]="nav.expanded ? 'expanded' : 'collapsed'">
+            <a mat-list-item
+               *ngFor="let child of nav.children"
+               [routerLink]="child.route"
+               routerLinkActive="active-link"
+               class="sub-item">
+              <span mat-line>{{ child.label }}</span>
+            </a>
+          </div>
+        </div>
 
-  </ul>
-</nav>
+      </ng-container>
+    </mat-nav-list>
+
+  </mat-sidenav>
+</mat-sidenav-container>

@@ -2,11 +2,27 @@ import {Component, ElementRef, HostListener} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {trigger, state, style, transition, animate} from '@angular/animations';
+import {Observable} from 'rxjs';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {map, shareReplay} from 'rxjs/operators';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatListModule} from '@angular/material/list';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-side-nav',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [RouterModule
+    , CommonModule,
+    RouterModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatListModule,
+    MatButtonModule
+  ],
   templateUrl: './side-nav.html',
   styleUrls: ['./side-nav.css'],
   animations: [
@@ -24,21 +40,23 @@ import {trigger, state, style, transition, animate} from '@angular/animations';
 })
 export class SideNav {
   menuItems = [
-    {label: 'Home', route: '/home'},
-    {label: 'Dashboard', route: '/dashboard'},
+    {label: 'Home', route: '/home', icon: 'home'},
+    {label: 'Dashboard', route: '/dashboard', icon: 'dashboard'},
     {
       label: 'Product',
       route: '/product',
+      icon: 'inventory',
       expanded: false,
       children: [
         {label: 'Product', route: '/product'},
         {label: 'Create', route: '/product/create'}
       ]
     },
-    {label: 'Help', route: '/help'},
+    {label: 'Help', route: '/help', icon: 'help'},
     {
       label: 'Settings',
       route: '/settings',
+      icon: 'settings',
       expanded: false,
       children: [
         {label: 'Account', route: '/settings/account'},
@@ -46,8 +64,19 @@ export class SideNav {
       ]
     },
   ];
+  isHandset$!: Observable<boolean>; // use definite assignment assertion
 
-  constructor(private elementRef: ElementRef) {
+
+  constructor(private elementRef: ElementRef,
+              private breakpointObserver: BreakpointObserver,
+  ) {
+    this.isHandset$ = this.breakpointObserver
+      .observe([Breakpoints.Handset])
+      .pipe(
+        map(result => result.matches),
+        shareReplay()
+      );
+
   }
 
   @HostListener('document:click', ['$event.target'])

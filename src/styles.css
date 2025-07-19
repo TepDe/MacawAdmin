@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Target MDC list labels inside custom sidenav */
+.custom-sidenav .mat-mdc-list-item .mat-mdc-list-item-unscoped-content,
+.custom-sidenav .mat-mdc-list-item .mat-mdc-list-item-unscoped-content > span[mat-line] {
+  color: white !important;
+}
+
+/* Target all links in sidenav */
+.custom-sidenav .mat-mdc-list-item {
+  color: white !important;
+}
+
+/* Target icons */
+.custom-sidenav mat-icon {
+  color: white !important;
+}

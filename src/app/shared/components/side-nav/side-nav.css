@@ -1,41 +1,47 @@
-.side-nav {
-  width: 220px;
+.sidenav-container {
   height: 100vh;
+}
+
+.custom-sidenav {
+  width: 280px;
   background-color: #2c3e50;
   color: white;
-  padding-top: 20px;
-  box-sizing: border-box;
 }
 
-.side-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-.side-nav li {
-  margin-bottom: 15px;
+.content {
+  padding: 16px;
 }
 
-.side-nav a {
-  text-decoration: none;
+.submenu {
   color: white;
-  padding: 10px 20px;
-  display: block;
-  transition: background-color 0.3s;
+  padding-left: 16px;
 }
 
-.side-nav a:hover,
-.side-nav a.active {
-  background-color: #34495e;
+.sub-item {
+  font-size: 14px;
 }
-.sub-menu {
-  padding-left: 20px;
-  margin: 0;
-  transition: height 0.3s ease-in-out;
+
+.expand-icon {
+  margin-left: auto;
+   align-items: center;
+ }
+
+.custom-sidenav a.mat-list-item {
+  display: flex;
+  align-items: center;
 }
-.arrow-icon {
-  display: inline-block;
-  margin-left: 8px;
-  transition: transform 300ms ease-in-out;
+
+
+/* Make nav item labels white */
+.custom-sidenav a.mat-list-item,
+.custom-sidenav a.mat-list-item span[mat-line],
+.custom-sidenav .submenu a.mat-list-item,
+.custom-sidenav .submenu a.mat-list-item span[mat-line] {
+  color: white !important;
 }
