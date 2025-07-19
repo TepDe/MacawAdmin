@@ -15,3 +15,24 @@ router-outlet {
   padding: 16px;
   overflow-y: auto;
 }
+
+/* Top-level layout */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Sidenav container full-screen */
+mat-sidenav-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure content fills container */
+.mat-sidenav-content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: auto; /* preserve scroll if needed */
+}
